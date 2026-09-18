@@ -1,37 +1,39 @@
-import PageHero from '../components/PageHero.jsx'
-import ProductCard from '../components/ProductCard.jsx'
 import PipeTable from '../components/PipeTable.jsx'
-import CtaBand from '../components/CtaBand.jsx'
+import { useNavigation } from '../NavigationContext.jsx'
 import { PRODS } from '../data/siteData.js'
+import './ProductsPage.css'
 
 export default function ProductsPage({ active }) {
+  const { goTo } = useNavigation()
+
   return (
     <div className={`page${active ? ' active' : ''}`} data-page="products">
-      <PageHero
-        tag="Product range"
-        heading="Storage tanks, pipes and well fittings."
-        body="Four tank constructions for liquid storage, plus the pipe and tube-well hardware that goes around them."
-      />
-
-      <section className="sec">
+      <section className="products-showcase">
         <div className="shell">
-          <div className="sec-head">
-            <div>
-              <div className="sec-tag">Storage tanks</div>
-              <h2>Match the coating to the liquid</h2>
-            </div>
+          <div className="products-showcase__heading">
+            <div className="sec-tag">Product range</div>
+            <h1>Our Storage Tanks</h1>
+            <p>High-quality storage solutions for various industrial and commercial applications.</p>
           </div>
-          <div className="prod-grid">
-            {PRODS.map((p) => (
-              <ProductCard key={p.id} product={p} full ctaLabel="Request a quote" goTarget="contact" />
+          <div className="products-showcase__grid">
+            {PRODS.map((product) => (
+              <article className="products-showcase__card" key={product.id}>
+                <div className="products-showcase__image"><img src={product.img} alt={product.imgAlt} /></div>
+                <div className="products-showcase__card-body">
+                  <h2>{product.name}</h2>
+                  {product.id === 'za' ? (
+                    <button className="btn btn-dark" onClick={() => goTo('zincalume')}>Explore</button>
+                  ) : (
+                    <span className="products-showcase__coming">Explore</span>
+                  )}
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       <PipeTable />
-
-      <CtaBand heading="Not sure which tank fits your site?" buttonLabel="Ask engineering" target="contact" />
     </div>
   )
 }
