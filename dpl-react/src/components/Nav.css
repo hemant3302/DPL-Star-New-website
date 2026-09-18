@@ -58,6 +58,42 @@
   border-bottom-color: var(--signal)
 }
 
+.nav-dropdown { position: relative; }
+
+.nav-dropdown__toggle {
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nav-dropdown__toggle span { color: var(--signal); font-size: 15px; margin-left: 3px; }
+
+.nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 220px;
+  padding: 8px 0;
+  background: var(--steel);
+  border: 1px solid var(--steel-line);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .22);
+}
+
+.nav-dropdown__menu button,
+.nav-dropdown__menu span {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  color: var(--zinc-bright);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+}
+
+.nav-dropdown__menu button { background: transparent; cursor: pointer; }
+.nav-dropdown__menu button:hover { color: var(--signal); }
+.nav-dropdown__menu span { color: var(--muted-dark); cursor: default; }
+
 .nav-cta {
   margin-left: 8px;
   font-size: 12.5px;
@@ -101,3 +137,10 @@
   background: 0;
   text-align: left
 }
+
+.mob-tanks > button { width: 100%; }
+.mob-tanks__menu { background: var(--steel); padding: 4px 0; }
+.mob-tanks__menu button,
+.mob-tanks__menu span { display: block; width: 100%; padding: 12px 36px; color: var(--zinc-bright); font-size: 14px; text-align: left; }
+.mob-tanks__menu button { background: transparent; cursor: pointer; }
+.mob-tanks__menu span { color: var(--muted-dark); }

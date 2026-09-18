@@ -4,8 +4,7 @@ import './Nav.css'
 
 const LINKS = [
   { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'products', label: 'Products' }
+  { id: 'about', label: 'About' }
 ]
 
 const ArrowIcon = ({ size = 13 }) => (
@@ -34,9 +33,11 @@ const CloseIcon = () => (
 export default function Nav() {
   const { page, goTo } = useNavigation()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [tanksOpen, setTanksOpen] = useState(false)
 
   function handleGo(id) {
     setMobileOpen(false)
+    setTanksOpen(false)
     goTo(id)
   }
 
@@ -57,6 +58,31 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <div className="nav-dropdown">
+            <button
+              className={`nav-a nav-dropdown__toggle${page === 'zincalume' ? ' on' : ''}`}
+              aria-expanded={tanksOpen}
+              aria-controls="storage-tanks-menu"
+              onClick={() => setTanksOpen((open) => !open)}
+            >
+              Storage Tanks <span aria-hidden="true">⌄</span>
+            </button>
+            {tanksOpen && (
+              <div className="nav-dropdown__menu" id="storage-tanks-menu">
+                <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
+                <span>GI Tanks</span>
+                <span>Fusion Bond Epoxy Tanks</span>
+                <span>Glass Fused Steel Tanks</span>
+              </div>
+            )}
+          </div>
+          <a
+            href="#"
+            className={`nav-a${page === 'products' ? ' on' : ''}`}
+            onClick={(e) => { e.preventDefault(); handleGo('products') }}
+          >
+            Products
+          </a>
           <button className="btn btn-p nav-cta" onClick={() => handleGo('contact')}>
             Get a quote <ArrowIcon />
           </button>
@@ -68,6 +94,15 @@ export default function Nav() {
       <div id="mob-nav" className={mobileOpen ? 'open' : ''}>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('home') }}>Home</a>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('about') }}>About</a>
+        <div className="mob-tanks">
+          <button onClick={() => setTanksOpen((open) => !open)} aria-expanded={tanksOpen}>Storage Tanks <span aria-hidden="true">⌄</span></button>
+          {tanksOpen && <div className="mob-tanks__menu">
+            <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
+            <span>GI Tanks</span>
+            <span>Fusion Bond Epoxy Tanks</span>
+            <span>Glass Fused Steel Tanks</span>
+          </div>}
+        </div>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('products') }}>Products</a>
         <button onClick={() => handleGo('contact')}>Get a quote</button>
       </div>
