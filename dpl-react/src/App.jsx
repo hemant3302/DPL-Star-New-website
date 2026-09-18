@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import ZincalumePage from './pages/ZincalumePage.jsx'
 
 function Pages() {
   const { page } = useNavigation()
@@ -14,6 +15,7 @@ function Pages() {
       <HomePage active={page === 'home'} />
       <AboutPage active={page === 'about'} />
       <ProductsPage active={page === 'products'} />
+      <ZincalumePage active={page === 'zincalume'} />
       <ContactPage active={page === 'contact'} />
     </main>
   )
