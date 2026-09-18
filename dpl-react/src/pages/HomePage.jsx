@@ -5,6 +5,7 @@ import SignatureProducts from '../components/SignatureProducts.jsx'
 import StrengthsSection from '../components/StrengthsSection.jsx'
 import ClientsMarquee from '../components/ClientsMarquee.jsx'
 import CtaBand from '../components/CtaBand.jsx'
+import FactoryLocation from '../components/FactoryLocation.jsx'
 import { STRS } from '../data/siteData.js'
 
 export default function HomePage({ active }) {
@@ -21,6 +22,7 @@ export default function HomePage({ active }) {
       />
       <ClientsMarquee />
       <CtaBand heading="Tell us what you need to store." buttonLabel="Start a conversation" target="contact" />
+      <FactoryLocation />
     </div>
   )
 }
